@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="sqlMapTestDb">
+
+	<statement id="insertTestTbl" parameterClass="java.util.Map">
+		INSERT INTO test_tbl (
+			test_num,
+			test_name,
+			update_time
+		) VALUES (
+			#testNum#,
+			#testName#,
+			now()
+		)
+	</statement>
+
+	<statement id="insertJoonTbl" parameterClass="java.util.Map">
+		INSERT INTO joon_tbl (
+			joon_num,
+			joon_name,
+			update_time
+		) VALUES (
+			#joonNum#,
+			#joonName#,
+			now()
+		)
+	</statement>
+
+	<statement id="selectTestTbl"  parameterClass="java.util.Map"
+				resultClass="sample.bean.TestTblBean">
+		SELECT
+			test_id AS testId,
+			test_num AS testNum,
+			test_name AS testName,
+			update_time AS updateTime
+		FROM
+			test_tbl
+	</statement>
+
+	<statement id="selectJoonTbl"  parameterClass="java.util.Map"
+				resultClass="sample.bean.JoonTblBean">
+		SELECT
+			joon_id AS joonId,
+			joon_num AS joonNum,
+			joon_name AS joonName,
+			update_time AS updateTime
+		FROM
+			joon_tbl
+	</statement>
+
+</sqlMap>

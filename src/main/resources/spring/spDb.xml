@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<!-- ############ My SQL##################-->
+
+	<!-- DB difinition.-->
+	<bean id="testDbDef" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://${my.master}:3306/test?useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true" />
+        <property name="username" value="test" />
+        <property name="password" value="test" /> 
+		<!-- Pool Setting -->
+		<property name="maxActive" value="5" />
+		<property name="maxIdle" value="2" />
+		<property name="maxWait" value="10000" />
+		<property name="poolPreparedStatements" value="true"/>
+		<!-- Delete when it will release to real searvice -->
+        <property name="validationQuery" value="select 1"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="timeBetweenEvictionRunsMillis" value="7200000"/>
+    </bean>
+
+	<!-- Annotation Transaction -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="testDbDef" />
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<!-- the Register.-->
+    <bean id="sqlTestDbDef" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+        <property name="configLocation">
+            <value>classpath:SqlMapTestDb.xml</value>
+        </property>
+		<property name="dataSource" ref="testDbDef" />
+    </bean>
+
+</beans>

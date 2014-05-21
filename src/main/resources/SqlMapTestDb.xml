@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMapConfig      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+	<!-- The properties (name=value) in the file specified here can be used placeholders in this config
+	file (e.g. “${driver}”. The file is relative to the classpath and is completely optional. -->
+	<!-- <properties resource=" examples/sqlmap/maps/SqlMapConfigExample.properties " />  -->
+
+	<!-- These settings control SqlMapClient configuration details, primarily to do with transaction
+	management. They are all optional (more detail later in this document). -->
+	<settings
+		cacheModelsEnabled="true"
+		enhancementEnabled="true"
+		lazyLoadingEnabled="true"
+		maxRequests="16"
+		maxSessions="3"
+		maxTransactions="3"
+		useStatementNamespaces="false"
+		defaultStatementTimeout="1000"
+		statementCachingEnabled="true"
+		classInfoCacheEnabled="true"
+	/>
+
+	<sqlMap resource="sqlMap/testDbSql.xml"/>
+
+</sqlMapConfig>

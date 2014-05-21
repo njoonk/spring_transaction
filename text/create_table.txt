@@ -1,0 +1,17 @@
+CREATE TABLE test_tbl
+(
+    test_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    test_num INT UNSIGNED,
+    test_name VARCHAR(10) NOT NULL,
+    update_time DATETIME NOT NULL,
+    PRIMARY KEY (test_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE joon_tbl
+(
+    joon_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    joon_num INT UNSIGNED,
+    joon_name VARCHAR(10) NOT NULL,
+    update_time DATETIME NOT NULL,
+    PRIMARY KEY (joon_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
